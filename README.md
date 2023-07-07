@@ -5,6 +5,8 @@ This project was bootstrapped with [Create Contentful App](https://github.com/co
 This is Cloudinary Uploader Widget for Contentful App. 
 Zou can upload assets to Cloudinary and use them for your contents in Contentful.
 
+![Screen Recording](./docs/screen-recording-app.gif)
+
 ## How to use
 
 ### In Cloudinary Organization
