@@ -79,17 +79,21 @@ const Sidebar = () => {
           >
             <Flex
               flexDirection="row"
-              gap="spacingS"
+              gap="spacingXs"
               alignItems="center"
             >
-              <img src={url} width="130" height="72" />
-              <Flex className={styles.copyText}>
+              <img src={url} />
+                <div className={styles.copyTexts}>
+                  <p className={styles.copyClip}>{copiedUrl["copied"] === url ? "Copied!" : "Copy to Clipboard"}</p>
+                  <p className={styles.fileName}>{filename}</p>
+                </div>
+                
+                <div className={styles.copyIcon}>
                 {copiedUrl["copied"] === url
                   ? <DoneIcon size="tiny" variant="secondary" />
                   : <CopyIcon size="tiny" variant="secondary" />
                 }
-                <span>{copiedUrl["copied"] === url ? "Copied!" : "Copy to Clipboard"}</span>
-              </Flex>
+                </div>
             </Flex>
           </Card>
           ))}
