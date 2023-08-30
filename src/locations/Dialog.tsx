@@ -19,8 +19,7 @@ const Dialog = () => {
   const instance = window.cloudinary.createUploadWidget(
     {
       cloudName: cloudName,
-      //uploadPreset: uploadPreset,
-      uploadPreset: "public-upload",
+      uploadPreset: uploadPreset,
       showAdvancedOptions: true,
       sources: sources.replaceAll(/\s+/g, '').split(',')
     },
