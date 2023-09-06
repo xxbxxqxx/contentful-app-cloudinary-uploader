@@ -16,12 +16,19 @@ const Dialog = () => {
     sources
   } = sdk.parameters.installation
 
+  const params: any = sdk.parameters.invocation
+  const {
+    userId,
+    entryId
+  } = params
+
   const instance = window.cloudinary.createUploadWidget(
     {
       cloudName: cloudName,
       uploadPreset: uploadPreset,
       showAdvancedOptions: true,
-      sources: sources.replaceAll(/\s+/g, '').split(',')
+      sources: sources.replaceAll(/\s+/g, '').split(','),
+      context: {userId: userId || "nodata", entryId: entryId || "nodata"}
     },
     (err: any, info: any) => {
       if (!err) {    
@@ -39,6 +46,7 @@ const Dialog = () => {
   )
 
   init((sdk) => {
+    
     instance.open()
   });
 
