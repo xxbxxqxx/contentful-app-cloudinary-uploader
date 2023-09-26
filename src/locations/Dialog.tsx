@@ -29,9 +29,9 @@ const Dialog = () => {
   if(makeFolderOption){
     let d = new Date();
     let year = d.getFullYear();
-    let month = d.getMonth() + 1;
-    let day = d.getDate();
-    folder = year + "/" + month + "/" + day
+    let month = (d.getMonth() + 1).toString().padStart(2, "0");
+    let day = d.getDate().toString().padStart(2, "0");
+    folder = `${year}/${month}/${day}`
   }
 
   const instance = window.cloudinary.createUploadWidget(
