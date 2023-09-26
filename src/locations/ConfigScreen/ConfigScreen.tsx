@@ -24,6 +24,7 @@ export interface AppInstallationParameters {
     [style: string]: boolean;
   };
   showAdvancedOptions?: boolean;
+  makeFolderOption?: boolean;
 }
 
 const ConfigScreen = () => {
@@ -59,7 +60,6 @@ const ConfigScreen = () => {
 
   useEffect(() => {
     sdk.app.onConfigure(() => handleConfigure());
-      
   }, [sdk, handleConfigure]);
 
   const onChangeCopyFormat = (e: any) => {
@@ -117,6 +117,7 @@ const ConfigScreen = () => {
             Cloudinary
           </TextLink> and go to the dashboard and get the props.
         </Note>
+
         <FormControl isRequired className={styles.formBlock}>
           <FormControl.Label>Cloud name (<code className={styles.code}>cloudName</code>)</FormControl.Label>
           <TextInput
@@ -130,6 +131,7 @@ const ConfigScreen = () => {
             </Accordion.Item>
           </Accordion>
         </FormControl>
+
         <FormControl isRequired className={styles.formBlock}>
           <FormControl.Label>Upload preset (<code className={styles.code}>uploadPreset</code>)</FormControl.Label>
           <TextInput
@@ -144,6 +146,7 @@ const ConfigScreen = () => {
             </Accordion.Item>
           </Accordion>
         </FormControl>
+
         <FormControl isRequired className={styles.formBlock}>
           <FormControl.Label>Upload sources (<code className={styles.code}>sources</code>)</FormControl.Label>
           <TextInput
@@ -163,6 +166,7 @@ const ConfigScreen = () => {
             </Note>
           </FormControl.HelpText>
         </FormControl>
+
         <FormControl className={styles.formBlock}>
           <FormControl.Label>Copy format</FormControl.Label>
           {Object.keys(defaultCopyStyle).map((key, index) => (
@@ -183,6 +187,20 @@ const ConfigScreen = () => {
             </Accordion.Item>
           </Accordion>
         </FormControl>
+
+        <FormControl className={styles.formBlock}>
+          <FormControl.Label>Make folders option</FormControl.Label>
+          <Switch
+            name="allow-cookies-controlled"
+            id="allow-cookies-controlled"
+            isChecked={parameters?.makeFolderOption || false}
+            onChange={() => setParameters({...parameters, makeFolderOption: !parameters?.makeFolderOption})}
+          >
+            Make folders option
+          </Switch>
+          <FormControl.HelpText>This option will make date-based(YYYY/MM/DD) folders into Cloudinary when uploading assets.</FormControl.HelpText>
+        </FormControl>
+        
         <FormControl className={styles.formBlock}>
           <FormControl.Label>Advanced options (<code className={styles.code}>showAdvancedOptions</code>)</FormControl.Label>
           <Switch
@@ -193,13 +211,14 @@ const ConfigScreen = () => {
           >
             Show advanced options
           </Switch>
-          <FormControl.HelpText>This enables users to set the Public ID, Add a Tag, and select an Upload Preset (only if getUploadPresets is defined).</FormControl.HelpText>
+          <FormControl.HelpText>This option enables users to set the Public ID, Add a Tag, and select an Upload Preset (only if getUploadPresets is defined).</FormControl.HelpText>
           <Accordion className={styles.accordion}>
             <Accordion.Item title="What is this?">
               <img src={imgScreenshotAdvancedOptions} className={styles.screenshot} />
             </Accordion.Item>
           </Accordion>
         </FormControl>
+
       </Form>
     </Flex>
   );

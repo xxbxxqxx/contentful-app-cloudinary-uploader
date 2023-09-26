@@ -53,7 +53,7 @@ const Sidebar = () => {
     return formatText
   };
 
-  const copyAssetToClipboard = async (url: string, filename: string) => {
+  const copyAssetToClipboard = async (url: string, filename: string) => {    
     const target = returnFormattedAsset(url, filename)
     await navigator.clipboard.writeText(target || "")
     setCopiedUrl({copied: url})
@@ -135,6 +135,7 @@ const Sidebar = () => {
                     aria-label="Copy URL"
                     size="small"
                     icon={<DoneIcon />}
+                    onClick={() => copyAssetToClipboard(url, filename)}
                     />
                   : <IconButton
                     variant="secondary"

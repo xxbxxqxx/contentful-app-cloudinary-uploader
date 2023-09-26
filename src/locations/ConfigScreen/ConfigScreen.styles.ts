@@ -27,7 +27,7 @@ export const styles = {
     }
   }),
   formBlock: css({
-    marginTop: tokens.spacingXl,
+    marginTop: tokens.spacingL,
   }),
   screenshot: css({
     margin: `${tokens.spacingXs} 0`,
